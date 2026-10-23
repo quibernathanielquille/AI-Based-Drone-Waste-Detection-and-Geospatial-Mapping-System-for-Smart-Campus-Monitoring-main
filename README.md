@@ -52,6 +52,7 @@ The system is designed for smart campus management, helping authorities identify
 - Administrator role
 - Environmental officer role
 - Protected routes and JWT-based authentication
+- Protected routes and JWT-based authentication
 
 ---
 
