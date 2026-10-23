@@ -51,9 +51,6 @@ The system is designed for smart campus management, helping authorities identify
 ### Role-Based Access Control
 - Administrator role
 - Environmental officer role
-- Protected routes and JWT-based authentication
-
----
 
 ## Tech Stack
 
