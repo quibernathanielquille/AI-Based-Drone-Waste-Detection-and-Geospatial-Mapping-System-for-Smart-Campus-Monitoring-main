@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Eye ERD</title>
+  <style>
+    body { margin: 0; background: #fafafa; display: flex; justify-content: center; padding: 16px; }
+    #erd { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+  </style>
+</head>
+<body>
+<div id="erd">
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="920" viewBox="0 0 1320 920">
+  <defs>
+    <filter id="sh" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+    <!-- ONE -->
+    <g id="one"><line x1="0" y1="-9" x2="0" y2="9" stroke="#444" stroke-width="2.5" stroke-linecap="round"/></g>
+    <!-- MANY -->
+    <g id="many">
+      <line x1="0" y1="0" x2="-16" y2="-9" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-16" y2="0" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-16" y2="9" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+    <!-- ZERO OR MANY -->
+    <g id="zeromany">
+      <circle cx="-7" cy="0" r="4.5" fill="#fff" stroke="#444" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="-18" y2="-9" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-18" y2="0" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="-18" y2="9" stroke="#444" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+    <!-- PK key icon -->
+    <g id="icon-pk">
+      <circle cx="7" cy="7" r="6" fill="#fbbf24" stroke="#d97706" stroke-width="0.8"/>
+      <text x="7" y="10" text-anchor="middle" font-size="8" fill="#92400e">&#128273;</text>
+    </g>
+    <!-- FK arrow icon -->
+    <g id="icon-fk">
+      <circle cx="7" cy="7" r="6" fill="#86efac" stroke="#16a34a" stroke-width="0.8"/>
+      <path d="M4 7 H9 M7 5 L9 7 L7 9" fill="none" stroke="#15803d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- attr icon -->
+    <g id="icon-attr">
+      <rect x="2" y="3" width="10" height="8" rx="1" fill="#93c5fd" stroke="#2563eb" stroke-width="0.8"/>
+      <line x1="4" y1="6" x2="10" y2="6" stroke="#2563eb" stroke-width="0.8"/>
+      <line x1="4" y1="8.5" x2="8" y2="8.5" stroke="#2563eb" stroke-width="0.8"/>
+    </g>
+  </defs>
+
+  <text x="660" y="32" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#222">Entity Relationship Diagram — Campus Eye</text>
+  <text x="660" y="52" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="11" fill="#777">Database: smart_campus_waste (MySQL) · Crow's Foot Notation</text>
+
+  <!-- ==================== TABLES ==================== -->
+
+  <!-- roles -->
+  <g filter="url(#sh)">
+    <rect x="40" y="70" width="250" height="210" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="40" y="70" width="250" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="40" y="92" width="250" height="12" fill="#f0a88a"/>
+    <text x="165" y="93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">roles</text>
+    <!-- rows -->
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="40" y="104" width="250" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="48" y="108"/><text x="72" y="121" fill="#222">id</text><text x="175" y="121" fill="#888">int unsigned</text>
+      <rect x="40" y="130" width="250" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="48" y="134"/><text x="72" y="147" fill="#222">name</text><text x="175" y="147" fill="#888">varchar(100)</text>
+      <rect x="40" y="156" width="250" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="48" y="160"/><text x="72" y="173" fill="#222">slug</text><text x="175" y="173" fill="#888">varchar(50)</text>
+      <rect x="40" y="182" width="250" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="48" y="186"/><text x="72" y="199" fill="#222">description</text><text x="175" y="199" fill="#888">text</text><text x="268" y="199" fill="#aaa" font-size="9">N</text>
+      <rect x="40" y="208" width="250" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="48" y="212"/><text x="72" y="225" fill="#222">deleted_at</text><text x="175" y="225" fill="#888">timestamp</text><text x="268" y="225" fill="#aaa" font-size="9">N</text>
+      <line x1="40" y1="104" x2="290" y2="104" stroke="#eee"/><line x1="40" y1="130" x2="290" y2="130" stroke="#eee"/>
+      <line x1="40" y1="156" x2="290" y2="156" stroke="#eee"/><line x1="40" y1="182" x2="290" y2="182" stroke="#eee"/>
+      <line x1="40" y1="208" x2="290" y2="208" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- users (center hub) -->
+  <g filter="url(#sh)">
+    <rect x="395" y="70" width="270" height="295" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="395" y="70" width="270" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="395" y="92" width="270" height="12" fill="#f0a88a"/>
+    <text x="530" y="93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">users</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="395" y="104" width="270" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="403" y="108"/><text x="427" y="121" fill="#222">id</text><text x="530" y="121" fill="#888">int unsigned</text>
+      <rect x="395" y="130" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-fk" x="403" y="134"/><text x="427" y="147" fill="#222">role_id</text><text x="530" y="147" fill="#888">int unsigned</text>
+      <rect x="395" y="156" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="160"/><text x="427" y="173" fill="#222">first_name</text><text x="530" y="173" fill="#888">varchar(100)</text>
+      <rect x="395" y="182" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="403" y="186"/><text x="427" y="199" fill="#222">last_name</text><text x="530" y="199" fill="#888">varchar(100)</text>
+      <rect x="395" y="208" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="212"/><text x="427" y="225" fill="#222">email</text><text x="530" y="225" fill="#888">varchar(255)</text>
+      <rect x="395" y="234" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="403" y="238"/><text x="427" y="251" fill="#222">password_hash</text><text x="530" y="251" fill="#888">varchar(255)</text>
+      <rect x="395" y="260" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="264"/><text x="427" y="277" fill="#222">is_active</text><text x="530" y="277" fill="#888">tinyint(1)</text>
+      <rect x="395" y="286" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="403" y="290"/><text x="427" y="303" fill="#222">last_login_at</text><text x="530" y="303" fill="#888">timestamp</text><text x="648" y="303" fill="#aaa" font-size="9">N</text>
+      <rect x="395" y="312" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="316"/><text x="427" y="329" fill="#222">created_at</text><text x="530" y="329" fill="#888">timestamp</text>
+      <line x1="395" y1="130" x2="665" y2="130" stroke="#eee"/><line x1="395" y1="156" x2="665" y2="156" stroke="#eee"/>
+      <line x1="395" y1="182" x2="665" y2="182" stroke="#eee"/><line x1="395" y1="208" x2="665" y2="208" stroke="#eee"/>
+      <line x1="395" y1="234" x2="665" y2="234" stroke="#eee"/><line x1="395" y1="260" x2="665" y2="260" stroke="#eee"/>
+      <line x1="395" y1="286" x2="665" y2="286" stroke="#eee"/><line x1="395" y1="312" x2="665" y2="312" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- waste_detections -->
+  <g filter="url(#sh)">
+    <rect x="770" y="70" width="290" height="295" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="770" y="70" width="290" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="770" y="92" width="290" height="12" fill="#f0a88a"/>
+    <text x="915" y="93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">waste_detections</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="770" y="104" width="290" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="778" y="108"/><text x="802" y="121" fill="#222">id</text><text x="900" y="121" fill="#888">int unsigned</text>
+      <rect x="770" y="130" width="290" height="26" fill="#f9f9f9"/>
+      <use href="#icon-fk" x="778" y="134"/><text x="802" y="147" fill="#222">detected_by</text><text x="900" y="147" fill="#888">int unsigned</text><text x="1043" y="147" fill="#aaa" font-size="9">N</text>
+      <rect x="770" y="156" width="290" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="160"/><text x="802" y="173" fill="#222">waste_category</text><text x="900" y="173" fill="#888">enum</text>
+      <rect x="770" y="182" width="290" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="778" y="186"/><text x="802" y="199" fill="#222">latitude</text><text x="900" y="199" fill="#888">decimal(10,8)</text>
+      <rect x="770" y="208" width="290" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="212"/><text x="802" y="225" fill="#222">longitude</text><text x="900" y="225" fill="#888">decimal(11,8)</text>
+      <rect x="770" y="234" width="290" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="778" y="238"/><text x="802" y="251" fill="#222">confidence_score</text><text x="900" y="251" fill="#888">decimal(5,2)</text>
+      <rect x="770" y="260" width="290" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="264"/><text x="802" y="277" fill="#222">waste_image</text><text x="900" y="277" fill="#888">varchar(500)</text><text x="1043" y="277" fill="#aaa" font-size="9">N</text>
+      <rect x="770" y="286" width="290" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="778" y="290"/><text x="802" y="303" fill="#222">detection_date</text><text x="900" y="303" fill="#888">date</text>
+      <rect x="770" y="312" width="290" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="316"/><text x="802" y="329" fill="#222">status</text><text x="900" y="329" fill="#888">enum</text>
+      <line x1="770" y1="130" x2="1060" y2="130" stroke="#eee"/><line x1="770" y1="156" x2="1060" y2="156" stroke="#eee"/>
+      <line x1="770" y1="182" x2="1060" y2="182" stroke="#eee"/><line x1="770" y1="208" x2="1060" y2="208" stroke="#eee"/>
+      <line x1="770" y1="234" x2="1060" y2="234" stroke="#eee"/><line x1="770" y1="260" x2="1060" y2="260" stroke="#eee"/>
+      <line x1="770" y1="286" x2="1060" y2="286" stroke="#eee"/><line x1="770" y1="312" x2="1060" y2="312" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- reports -->
+  <g filter="url(#sh)">
+    <rect x="395" y="475" width="270" height="240" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="395" y="475" width="270" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="395" y="497" width="270" height="12" fill="#f0a88a"/>
+    <text x="530" y="498" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">reports</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="395" y="509" width="270" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="403" y="513"/><text x="427" y="526" fill="#222">id</text><text x="530" y="526" fill="#888">int unsigned</text>
+      <rect x="395" y="535" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-fk" x="403" y="539"/><text x="427" y="552" fill="#222">generated_by</text><text x="530" y="552" fill="#888">int unsigned</text>
+      <rect x="395" y="561" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="565"/><text x="427" y="578" fill="#222">title</text><text x="530" y="578" fill="#888">varchar(255)</text>
+      <rect x="395" y="587" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="403" y="591"/><text x="427" y="604" fill="#222">report_type</text><text x="530" y="604" fill="#888">enum</text>
+      <rect x="395" y="613" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="617"/><text x="427" y="630" fill="#222">date_from</text><text x="530" y="630" fill="#888">date</text><text x="648" y="630" fill="#aaa" font-size="9">N</text>
+      <rect x="395" y="639" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="403" y="643"/><text x="427" y="656" fill="#222">total_detections</text><text x="530" y="656" fill="#888">int unsigned</text>
+      <rect x="395" y="665" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="403" y="669"/><text x="427" y="682" fill="#222">status</text><text x="530" y="682" fill="#888">enum</text>
+      <line x1="395" y1="535" x2="665" y2="535" stroke="#eee"/><line x1="395" y1="561" x2="665" y2="561" stroke="#eee"/>
+      <line x1="395" y1="587" x2="665" y2="587" stroke="#eee"/><line x1="395" y1="613" x2="665" y2="613" stroke="#eee"/>
+      <line x1="395" y1="639" x2="665" y2="639" stroke="#eee"/><line x1="395" y1="665" x2="665" y2="665" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- activity_logs -->
+  <g filter="url(#sh)">
+    <rect x="40" y="475" width="250" height="214" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="40" y="475" width="250" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="40" y="497" width="250" height="12" fill="#f0a88a"/>
+    <text x="165" y="498" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">activity_logs</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="40" y="509" width="250" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="48" y="513"/><text x="72" y="526" fill="#222">id</text><text x="175" y="526" fill="#888">int unsigned</text>
+      <rect x="40" y="535" width="250" height="26" fill="#f9f9f9"/>
+      <use href="#icon-fk" x="48" y="539"/><text x="72" y="552" fill="#222">user_id</text><text x="175" y="552" fill="#888">int unsigned</text><text x="268" y="552" fill="#aaa" font-size="9">N</text>
+      <rect x="40" y="561" width="250" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="48" y="565"/><text x="72" y="578" fill="#222">action</text><text x="175" y="578" fill="#888">varchar(100)</text>
+      <rect x="40" y="587" width="250" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="48" y="591"/><text x="72" y="604" fill="#222">module</text><text x="175" y="604" fill="#888">varchar(100)</text>
+      <rect x="40" y="613" width="250" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="48" y="617"/><text x="72" y="630" fill="#222">description</text><text x="175" y="630" fill="#888">text</text><text x="268" y="630" fill="#aaa" font-size="9">N</text>
+      <rect x="40" y="639" width="250" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="48" y="643"/><text x="72" y="656" fill="#222">created_at</text><text x="175" y="656" fill="#888">timestamp</text>
+      <line x1="40" y1="535" x2="290" y2="535" stroke="#eee"/><line x1="40" y1="561" x2="290" y2="561" stroke="#eee"/>
+      <line x1="40" y1="587" x2="290" y2="587" stroke="#eee"/><line x1="40" y1="613" x2="290" y2="613" stroke="#eee"/>
+      <line x1="40" y1="639" x2="290" y2="639" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- settings -->
+  <g filter="url(#sh)">
+    <rect x="770" y="475" width="270" height="188" rx="10" fill="#fff" stroke="#d4d4d4"/>
+    <rect x="770" y="475" width="270" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="770" y="497" width="270" height="12" fill="#f0a88a"/>
+    <text x="905" y="498" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">settings</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="770" y="509" width="270" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="778" y="513"/><text x="802" y="526" fill="#222">id</text><text x="900" y="526" fill="#888">int unsigned</text>
+      <rect x="770" y="535" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-fk" x="778" y="539"/><text x="802" y="552" fill="#222">user_id</text><text x="900" y="552" fill="#888">int unsigned</text><text x="1023" y="552" fill="#aaa" font-size="9">N</text>
+      <rect x="770" y="561" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="565"/><text x="802" y="578" fill="#222">setting_key</text><text x="900" y="578" fill="#888">varchar(100)</text>
+      <rect x="770" y="587" width="270" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="778" y="591"/><text x="802" y="604" fill="#222">setting_value</text><text x="900" y="604" fill="#888">text</text><text x="1023" y="604" fill="#aaa" font-size="9">N</text>
+      <rect x="770" y="613" width="270" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="778" y="617"/><text x="802" y="630" fill="#222">setting_group</text><text x="900" y="630" fill="#888">enum</text>
+      <line x1="770" y1="535" x2="1040" y2="535" stroke="#eee"/><line x1="770" y1="561" x2="1040" y2="561" stroke="#eee"/>
+      <line x1="770" y1="587" x2="1040" y2="587" stroke="#eee"/><line x1="770" y1="613" x2="1040" y2="613" stroke="#eee"/>
+    </g>
+  </g>
+
+  <!-- analytics_logs (standalone) -->
+  <g filter="url(#sh)">
+    <rect x="1090" y="300" width="210" height="162" rx="10" fill="#fff" stroke="#d4d4d4" stroke-dasharray="6 3"/>
+    <rect x="1090" y="300" width="210" height="34" rx="10" fill="#f0a88a"/>
+    <rect x="1090" y="322" width="210" height="12" fill="#f0a88a"/>
+    <text x="1195" y="323" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">analytics_logs</text>
+    <g font-family="Consolas,monospace" font-size="10.5">
+      <rect x="1090" y="334" width="210" height="26" fill="#fff"/>
+      <use href="#icon-pk" x="1098" y="338"/><text x="1122" y="351" fill="#222">id</text><text x="1185" y="351" fill="#888">int unsigned</text>
+      <rect x="1090" y="360" width="210" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="1098" y="364"/><text x="1122" y="377" fill="#222">metric_type</text><text x="1185" y="377" fill="#888">varchar(100)</text>
+      <rect x="1090" y="386" width="210" height="26" fill="#fff"/>
+      <use href="#icon-attr" x="1098" y="390"/><text x="1122" y="403" fill="#222">metric_value</text><text x="1185" y="403" fill="#888">decimal(15,4)</text>
+      <rect x="1090" y="412" width="210" height="26" fill="#f9f9f9"/>
+      <use href="#icon-attr" x="1098" y="416"/><text x="1122" y="429" fill="#222">recorded_at</text><text x="1185" y="429" fill="#888">date</text>
+    </g>
+    <text x="1195" y="455" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="9" fill="#999" font-style="italic">standalone — no FK</text>
+  </g>
+
+  <!-- ==================== CONNECTION LINES (on top) ==================== -->
+  <g stroke="#444" stroke-width="2" fill="none">
+    <!-- roles (1) —— users (N)  via role_id -->
+    <line x1="290" y1="175" x2="395" y2="175"/>
+    <use href="#one" x="290" y="175"/>
+    <use href="#many" x="395" y="175" transform="rotate(180 395 175)"/>
+
+    <!-- users (1) —— waste_detections (0..N)  via detected_by -->
+    <line x1="665" y1="155" x2="770" y2="155"/>
+    <use href="#one" x="665" y="155"/>
+    <use href="#zeromany" x="770" y="155" transform="rotate(180 770 155)"/>
+
+    <!-- users (1) —— reports (N)  via generated_by -->
+    <line x1="530" y1="365" x2="530" y2="475"/>
+    <use href="#one" x="530" y="365" transform="rotate(90 530 365)"/>
+    <use href="#many" x="530" y="475" transform="rotate(-90 530 475)"/>
+
+    <!-- users (1) —— activity_logs (0..N)  via user_id -->
+    <path d="M 395 310 L 310 310 L 310 490 L 290 490"/>
+    <use href="#one" x="395" y="310" transform="rotate(180 395 310)"/>
+    <use href="#zeromany" x="290" y="490"/>
+
+    <!-- users (1) —— settings (0..N)  via user_id -->
+    <path d="M 665 310 L 750 310 L 750 490 L 770 490"/>
+    <use href="#one" x="665" y="310"/>
+    <use href="#zeromany" x="770" y="490" transform="rotate(180 770 490)"/>
+  </g>
+
+  <!-- Legend -->
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="10" fill="#444">
+    <rect x="40" y="760" width="1240" height="130" rx="8" fill="#fefefe" stroke="#e5e5e5"/>
+    <text x="60" y="785" font-weight="700" font-size="12" fill="#333">Legend</text>
+    <use href="#icon-pk" x="60" y="798"/><text x="82" y="812">Primary Key (PK)</text>
+    <use href="#icon-fk" x="200" y="798"/><text x="222" y="812">Foreign Key (FK)</text>
+    <use href="#icon-attr" x="360" y="798"/><text x="382" y="812">Attribute</text>
+    <text x="480" y="812" fill="#aaa">N = Nullable</text>
+
+    <line x1="60" y1="835" x2="100" y2="835" stroke="#555" stroke-width="1.6"/>
+    <use href="#one" x="100" y="835"/><text x="115" y="839">One</text>
+
+    <line x1="180" y1="835" x2="220" y2="835" stroke="#555" stroke-width="1.6"/>
+    <use href="#many" x="220" y="835" transform="rotate(180 220 835)"/><text x="235" y="839">Many</text>
+
+    <line x1="300" y1="835" x2="340" y2="835" stroke="#555" stroke-width="1.6"/>
+    <use href="#zeromany" x="340" y="835" transform="rotate(180 340 835)"/><text x="355" y="839">Zero or Many</text>
+
+    <text x="60" y="865" font-size="10" fill="#555">
+      <tspan font-weight="600">Connections:</tspan>
+      <tspan> roles → users (role_id) · users → waste_detections (detected_by) · users → reports (generated_by) · users → activity_logs (user_id) · users → settings (user_id)</tspan>
+    </text>
+    <text x="60" y="882" font-size="10" fill="#777">users is the central table. All lines connect directly from table edge to table edge with Crow's Foot cardinality symbols.</text>
+  </g>
+</svg>
+</div>
+</body>
+</html>

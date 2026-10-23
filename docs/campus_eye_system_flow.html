@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Eye — System Flow</title>
+  <style>
+    body { margin: 0; background: #fff; display: flex; justify-content: center; padding: 16px; }
+    #flow { background: #fff; }
+  </style>
+</head>
+<body>
+<div id="flow">
+<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="600" viewBox="0 0 1340 600">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#111"/>
+    </marker>
+  </defs>
+
+  <!-- Detection pipeline steps (top strip) -->
+  <rect x="30" y="58" width="780" height="28" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="1"/>
+  <text x="48" y="76" font-family="Segoe UI,Arial,sans-serif" font-size="9" font-weight="600" fill="#333">Detection Pipeline:</text>
+  <text x="168" y="76" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#444">① Drone detects waste</text>
+  <text x="318" y="76" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#444">→ ② Show live on laptop</text>
+  <text x="488" y="76" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#444">→ ③ YOLO processes frame</text>
+  <text x="658" y="76" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#444">→ ④ Save to database</text>
+
+  <!-- ===== DRONE — Step 1 ===== -->
+  <g transform="translate(30, 115)">
+    <g stroke="#111" stroke-width="1.8" fill="none" stroke-linecap="round">
+      <line x1="45" y1="45" x2="18" y2="26"/><line x1="45" y1="45" x2="72" y2="26"/>
+      <line x1="45" y1="45" x2="18" y2="64"/><line x1="45" y1="45" x2="72" y2="64"/>
+      <circle cx="18" cy="26" r="9"/><circle cx="72" cy="26" r="9"/>
+      <circle cx="18" cy="64" r="9"/><circle cx="72" cy="64" r="9"/>
+      <rect x="38" y="42" width="14" height="9" rx="2" fill="#fff"/>
+      <circle cx="45" cy="38" r="4"/>
+      <!-- waste marker under drone -->
+      <circle cx="45" cy="72" r="5" stroke="#111" stroke-width="1.2" fill="none"/>
+      <text x="45" y="75" text-anchor="middle" font-size="7" fill="#111" font-family="Arial">!</text>
+    </g>
+    <text x="45" y="92" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Drone</text>
+    <text x="45" y="106" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#555">Detects Campus Waste</text>
+    <text x="45" y="118" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#555">Aerial Camera + GPS</text>
+  </g>
+
+  <!-- ===== LAPTOP — Step 2 Live Display ===== -->
+  <rect x="145" y="95" width="175" height="138" rx="4" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="232" y="118" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Laptop</text>
+  <g transform="translate(178, 125)" stroke="#111" stroke-width="1.4" fill="none">
+    <rect x="0" y="8" width="68" height="44" rx="3"/>
+    <line x1="0" y1="16" x2="68" y2="16" stroke-width="1"/>
+    <rect x="-7" y="52" width="82" height="5" rx="2"/>
+    <!-- live waste view on screen -->
+    <rect x="10" y="22" width="48" height="26" rx="2" stroke-width="1"/>
+    <circle cx="34" cy="35" r="8" stroke-width="1"/>
+    <text x="34" y="38" text-anchor="middle" font-size="7" fill="#111" font-family="Arial" font-weight="700">LIVE</text>
+    <circle cx="58" cy="20" r="4" fill="#111"/>
+    <text x="58" y="22" text-anchor="middle" font-size="5" fill="#fff" font-family="Arial">REC</text>
+  </g>
+  <text x="232" y="198" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">Live Display</text>
+  <text x="232" y="212" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#555">Shows waste live on screen</text>
+  <text x="232" y="224" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#555">Live Camera (Web)</text>
+
+  <!-- Personnel -->
+  <g transform="translate(355, 120)">
+    <circle cx="30" cy="16" r="11" stroke="#111" stroke-width="1.6" fill="none"/>
+    <path d="M12 58 Q30 38 48 58 L48 72 H12 Z" stroke="#111" stroke-width="1.6" fill="none"/>
+    <text x="30" y="92" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">Personnel /</text>
+    <text x="30" y="104" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">Administrator</text>
+  </g>
+
+  <!-- Client Layer -->
+  <rect x="430" y="82" width="265" height="168" rx="4" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="562" y="104" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Client Layer</text>
+  <g transform="translate(442, 112)">
+    <rect x="0" y="8" width="95" height="52" rx="3" stroke="#111" stroke-width="1.5" fill="none"/>
+    <line x1="0" y1="16" x2="95" y2="16" stroke="#111" stroke-width="1"/>
+    <rect x="6" y="20" width="50" height="34" rx="2" stroke="#111" stroke-width="0.9" fill="none"/>
+    <text x="31" y="40" text-anchor="middle" font-size="7" fill="#111" font-family="Arial" font-weight="700">LIVE</text>
+    <circle cx="68" cy="36" r="10" stroke="#111" stroke-width="1" fill="none"/>
+    <circle cx="68" cy="36" r="3" fill="#111"/>
+    <rect x="-4" y="60" width="103" height="5" rx="2" stroke="#111" stroke-width="1.4" fill="none"/>
+    <text x="47" y="80" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" font-weight="600">Campus Eye Web App</text>
+    <text x="47" y="91" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7">Live Camera Panel</text>
+  </g>
+  <g transform="translate(575, 118)">
+    <rect x="0" y="6" width="50" height="36" rx="2" stroke="#111" stroke-width="1.3" fill="none"/>
+    <line x1="0" y1="13" x2="50" y2="13" stroke="#111" stroke-width="1"/>
+    <text x="25" y="56" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8">Admin Portal</text>
+  </g>
+  <text x="562" y="232" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" fill="#555">Live view → YOLO detect → Map · Reports</text>
+
+  <!-- WiFi -->
+  <g transform="translate(730, 120)">
+    <path d="M28 50 Q28 28 28 28 M14 46 Q28 26 42 46 M6 38 Q28 16 50 38" stroke="#111" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <circle cx="28" cy="53" r="3.5" fill="#111"/>
+    <text x="28" y="76" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">WiFi / Internet</text>
+  </g>
+
+  <!-- Server Layer -->
+  <rect x="820" y="72" width="300" height="350" rx="4" fill="#fff" stroke="#111" stroke-width="1.5"/>
+  <text x="970" y="94" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="11" font-weight="600">Server Layer (XAMPP)</text>
+
+  <g transform="translate(905, 108)">
+    <rect x="0" y="0" width="16" height="44" stroke="#111" stroke-width="1.3" fill="none"/>
+    <rect x="20" y="0" width="16" height="44" stroke="#111" stroke-width="1.3" fill="none"/>
+    <rect x="40" y="0" width="16" height="44" stroke="#111" stroke-width="1.3" fill="none"/>
+    <text x="28" y="60" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="9">Apache Web Server</text>
+  </g>
+
+  <rect x="870" y="195" width="200" height="34" rx="3" fill="#fff" stroke="#111" stroke-width="1.4"/>
+  <text x="970" y="210" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="9" font-weight="600">PHP REST API</text>
+  <text x="970" y="222" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#555">Auth · Waste · Map · Reports</text>
+
+  <!-- ML — Step 3 YOLO Processing -->
+  <g transform="translate(835, 268)">
+    <rect x="0" y="0" width="92" height="54" rx="3" stroke="#111" stroke-width="1.5" fill="#fafafa"/>
+    <circle cx="28" cy="24" r="10" stroke="#111" stroke-width="1.1" fill="none"/>
+    <circle cx="58" cy="24" r="10" stroke="#111" stroke-width="1.1" fill="none"/>
+    <line x1="38" y1="24" x2="48" y2="24" stroke="#111" stroke-width="1"/>
+    <text x="46" y="42" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8" font-weight="700">ML Service</text>
+    <text x="46" y="54" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#555">YOLO11n Process</text>
+    <text x="46" y="66" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="6" fill="#777">Classify · Annotate</text>
+  </g>
+
+  <!-- MySQL -->
+  <g transform="translate(948, 268)">
+    <ellipse cx="36" cy="12" rx="28" ry="9" stroke="#111" stroke-width="1.3" fill="none"/>
+    <path d="M8 12 V36 C8 42 64 42 64 36 V12" stroke="#111" stroke-width="1.3" fill="none"/>
+    <ellipse cx="36" cy="36" rx="28" ry="9" stroke="#111" stroke-width="1.3" fill="none"/>
+    <text x="36" y="54" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="8">MySQL</text>
+    <text x="36" y="66" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="6" fill="#777">Save detection</text>
+  </g>
+
+  <!-- File Storage -->
+  <g transform="translate(1043, 268)">
+    <path d="M4 14 H26 L32 20 H68 V46 H4 Z" stroke="#111" stroke-width="1.3" fill="none"/>
+    <text x="36" y="58" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7">File Storage</text>
+    <text x="36" y="70" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="6" fill="#777">Waste images</text>
+  </g>
+
+  <!-- OpenStreetMap -->
+  <g transform="translate(80, 480)">
+    <circle cx="32" cy="32" r="26" stroke="#111" stroke-width="1.4" fill="none"/>
+    <ellipse cx="32" cy="34" rx="13" ry="9" stroke="#111" stroke-width="1.1" fill="none"/>
+    <circle cx="32" cy="29" r="3.5" fill="#111"/>
+    <text x="32" y="72" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="9" font-weight="600">OpenStreetMap</text>
+    <text x="32" y="84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#555">Map Tiles</text>
+  </g>
+
+  <!-- Personnel Portal -->
+  <g transform="translate(480, 500)">
+    <circle cx="24" cy="16" r="11" stroke="#111" stroke-width="1.5" fill="none"/>
+    <path d="M8 54 Q24 38 40 54 L40 66 H8 Z" stroke="#111" stroke-width="1.5" fill="none"/>
+    <text x="24" y="84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">Personnel</text>
+    <text x="24" y="96" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#555">Officer Portal</text>
+  </g>
+
+  <!-- Admin Portal -->
+  <g transform="translate(640, 500)">
+    <circle cx="24" cy="16" r="11" stroke="#111" stroke-width="1.5" fill="none"/>
+    <path d="M8 54 Q24 38 40 54 L40 66 H8 Z" stroke="#111" stroke-width="1.5" fill="none"/>
+    <circle cx="36" cy="12" r="5" stroke="#111" stroke-width="0.9" fill="none"/>
+    <text x="24" y="84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="10" font-weight="600">Admin</text>
+    <text x="24" y="96" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#555">Admin Portal</text>
+  </g>
+
+  <!-- ===== CONNECTIONS ===== -->
+  <g fill="none" stroke="#111" stroke-width="1.5" marker-end="url(#arr)">
+    <!-- Main flow -->
+    <line x1="105" y1="190" x2="145" y2="190"/>
+    <line x1="320" y1="190" x2="355" y2="190"/>
+    <line x1="415" y1="190" x2="430" y2="190"/>
+    <line x1="695" y1="190" x2="730" y2="190"/>
+    <line x1="786" y1="190" x2="820" y2="190"/>
+
+    <!-- ② Laptop live feed → Web App Live Camera (lane y=268) -->
+    <path d="M 232 233 L 232 268 L 487 268 L 487 250"/>
+
+    <!-- Apache → PHP -->
+    <line x1="970" y1="172" x2="970" y2="195" stroke-width="1.3"/>
+    <line x1="881" y1="229" x2="881" y2="248" stroke-width="1.2"/>
+    <line x1="984" y1="229" x2="984" y2="248" stroke-width="1.2"/>
+    <line x1="1079" y1="229" x2="1079" y2="248" stroke-width="1.2"/>
+
+    <!-- ③ Web App → YOLO process (lane y=370) -->
+    <path d="M 537 250 L 537 370 L 881 370 L 881 322" stroke-dasharray="5 4" stroke-width="1.4"/>
+
+    <!-- YOLO result → save via PHP (lane y=400) -->
+    <path d="M 927 295 L 970 295 L 970 248" stroke-dasharray="4 3" stroke-width="1.2"/>
+
+    <!-- Client → portals -->
+    <path d="M 510 250 L 510 500 L 504 500"/>
+    <path d="M 620 250 L 620 500 L 664 500"/>
+
+    <!-- Map tiles -->
+    <path d="M 460 250 L 460 440 L 112 480" stroke-dasharray="5 4" stroke-width="1.3"/>
+  </g>
+
+  <!-- Step labels on arrows -->
+  <text x="125" y="183" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#333" font-weight="600">① detect</text>
+  <text x="360" y="262" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#333" font-weight="600">② show live</text>
+  <text x="700" y="363" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#333" font-weight="600">③ YOLO process</text>
+  <text x="955" y="288" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#333" font-weight="600">④ save</text>
+  <text x="755" y="183" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#777">HTTP</text>
+  <text x="290" y="183" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#777">monitors</text>
+  <text x="300" y="434" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="7" fill="#666">map tiles</text>
+
+</svg>
+</div>
+</body>
+</html>
